@@ -662,7 +662,21 @@ controlSelect ({size,state,color,expanded,iconLeft} as mods) attrs attrs_
             }
     in control controlMods attrs
      << ls
-     << node "span" [ B.select ] []
+     << node "span" [ B.select
+     , case color of
+         Default -> B.none
+         White   -> B.isWhite
+         Light   -> B.isLight
+         Dark    -> B.isDark
+         Black   -> B.isBlack
+         Primary -> B.isPrimary
+         Info    -> B.isInfo
+         Success -> B.isSuccess
+         Warning -> B.isWarning
+         Danger  -> B.isDanger
+         Link    -> B.isLink
+     
+      ] []
      << ls
      << node "select"
        [ case size of
@@ -676,18 +690,6 @@ controlSelect ({size,state,color,expanded,iconLeft} as mods) attrs attrs_
            Active  -> B.isActive
            Loading -> B.isLoading
            _       -> B.none
-       , case color of
-           Default -> B.none
-           White   -> B.isWhite
-           Light   -> B.isLight
-           Dark    -> B.isDark
-           Black   -> B.isBlack
-           Primary -> B.isPrimary
-           Info    -> B.isInfo
-           Success -> B.isSuccess
-           Warning -> B.isWarning
-           Danger  -> B.isDanger
-           Link    -> B.isLink
        , case expanded of
            True    -> B.isFullWidth
            False   -> B.none
