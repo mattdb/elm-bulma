@@ -291,7 +291,7 @@ fieldLabel size
     [ B.fieldLabel
     , case size of
         Small    -> B.isSmall
-        Standard -> B.none
+        Standard -> B.isNormal
         Medium   -> B.isMedium
         Large    -> B.isLarge
     ]
